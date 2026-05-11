@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KemoFlix Admin | لوحة التحكم</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Tahoma,Arial,sans-serif;background:#05060a;color:#fff;min-height:100vh}
+    .bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 85% 8%,rgba(229,9,20,.38),transparent 29%),radial-gradient(circle at 12% 72%,rgba(111,0,255,.28),transparent 34%),linear-gradient(180deg,#0b0d15,#020206)}
+    header{position:sticky;top:0;background:rgba(5,6,10,.82);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09);z-index:10}
+    .nav{max-width:1260px;margin:auto;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{font-size:26px;font-weight:900}.brand span{color:#e50914}.pill{background:rgba(229,9,20,.14);border:1px solid rgba(229,9,20,.35);color:#ffd7da;border-radius:999px;padding:9px 14px;font-size:13px}
+    main{max-width:1260px;margin:auto;padding:22px 18px 40px}.top{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px}.stat b{font-size:28px;display:block}.stat span{color:#aaa;font-size:13px}.layout{display:grid;grid-template-columns:390px 1fr;gap:18px}.card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:26px;box-shadow:0 25px 70px rgba(0,0,0,.32);overflow:hidden}.card h2{font-size:21px;padding:20px 20px 8px}.sub{padding:0 20px 16px;color:#aaa;line-height:1.7;font-size:13px}.tabs{display:flex;gap:8px;padding:0 20px 15px;flex-wrap:wrap}.tab{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:10px 14px;cursor:pointer}.tab.active{background:#e50914;border-color:#e50914}.panel{display:none}.panel.active{display:block}form{padding:0 20px 20px;display:grid;gap:12px}.field label{display:block;font-size:13px;color:#ddd;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.14);border-radius:15px;padding:12px 13px;color:#fff;outline:0;font-size:14px}.field textarea{min-height:88px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btns{display:flex;gap:9px;flex-wrap:wrap}.btn{border:0;border-radius:15px;padding:12px 16px;font-weight:800;cursor:pointer;color:#fff}.save{background:#e50914;box-shadow:0 12px 32px rgba(229,9,20,.25)}.clear{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px}.toolbar input,.toolbar select{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:12px 14px;color:#fff;outline:0}.toolbar input{flex:1}.grid{padding:0 16px 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.series{position:relative;min-height:230px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--a),var(--b));border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 34px rgba(0,0,0,.25)}.series:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 32%,rgba(0,0,0,.9))}.series .info{position:absolute;z-index:2;bottom:13px;right:13px;left:13px}.tag{display:inline-block;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border-radius:999px;padding:5px 8px;font-size:11px;margin-bottom:7px}.series h3{font-size:16px;margin-bottom:4px}.series p{font-size:12px;color:#d5d5df;line-height:1.6}.tools{position:absolute;z-index:3;top:10px;left:10px;display:flex;gap:6px}.mini{border:0;border-radius:10px;background:rgba(0,0,0,.42);color:#fff;padding:8px 9px;cursor:pointer}.danger{background:rgba(229,9,20,.65)}.episodes{padding:0 20px 20px;display:grid;gap:10px}.episode{display:grid;grid-template-columns:1fr auto;gap:10px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px}.episode small{color:#aaa}.notice{margin:0 20px 15px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.07);color:#cfd0da;font-size:13px;line-height:1.7}.notice b{color:#fff}@media(max-width:1050px){.layout{grid-template-columns:1fr}.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:680px){.top{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}.nav{padding:13px}.brand{font-size:22px}.toolbar{flex-wrap:wrap}.toolbar input,.toolbar select{width:100%;flex:auto}}@media(max-width:420px){.grid{grid-template-columns:1fr}.top{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <header><div class="nav"><div class="brand">Kemo<span>Flix</span> Admin</div><div class="pill">نسخة شبه نهائية</div></div></header>
+  <main>
+    <section class="top">
+      <div class="stat"><b id="seriesCount">100</b><span>مسلسل داخل اللوحة</span></div>
+      <div class="stat"><b id="moviesCount">24</b><span>أفلام تجريبية</span></div>
+      <div class="stat"><b id="episodesCount">0</b><span>حلقات مضافة</span></div>
+      <div class="stat"><b>HD</b><span>مشغل روابط و iframe</span></div>
+    </section>
+
+    <section class="layout">
+      <aside class="card">
+        <h2>إدارة المحتوى</h2>
+        <p class="sub">أضف مسلسل، فيلم، أو حلقة. القائمة فيها 100 مسلسل جاهز كمربعات إدارة ويمكن تعديلها أو حذفها.</p>
+        <div class="tabs">
+          <button class="tab active" data-tab="seriesForm">مسلسل</button>
+          <button class="tab" data-tab="movieForm">فيلم</button>
+          <button class="tab" data-tab="episodeForm">حلقة</button>
+        </div>
+        <div class="notice"><b>ملاحظة:</b> الحفظ هنا تجريبي داخل المتصفح. للنسخة النهائية نربطه بـ Firebase حتى يظهر المحتوى على الموقع مباشرة.</div>
+
+        <form id="seriesForm" class="panel active">
+          <div class="field"><label>اسم المسلسل</label><input id="sTitle" required placeholder="مثال: قيامة المدينة" /></div>
+          <div class="row"><div class="field"><label>التصنيف</label><select id="sCat"><option>أكشن</option><option>دراما</option><option>رعب</option><option>تركي</option><option>عربي</option><option>كوري</option></select></div><div class="field"><label>عدد المواسم</label><input id="sSeasons" type="number" value="1" /></div></div>
+          <div class="field"><label>رابط الصورة</label><input id="sPoster" placeholder="https://..." /></div>
+          <div class="field"><label>وصف مختصر</label><textarea id="sDesc" placeholder="وصف المسلسل"></textarea></div>
+          <div class="btns"><button class="btn save">حفظ مسلسل</button><button type="button" class="btn clear" onclick="seriesForm.reset()">تفريغ</button></div>
+        </form>
+
+        <form id="movieForm" class="panel">
+          <div class="field"><label>اسم الفيلم</label><input id="mTitle" required /></div>
+          <div class="row"><div class="field"><label>التصنيف</label><select id="mCat"><option>أكشن</option><option>دراما</option><option>رعب</option><option>كوميديا</option></select></div><div class="field"><label>التقييم</label><input id="mRate" type="number" step="0.1" placeholder="8.5" /></div></div>
+          <div class="field"><label>رابط الصورة</label><input id="mPoster" /></div>
+          <div class="field"><label>رابط المشاهدة أو iframe</label><textarea id="mUrl"></textarea></div>
+          <div class="btns"><button class="btn save">حفظ فيلم</button><button type="button" class="btn clear" onclick="movieForm.reset()">تفريغ</button></div>
+        </form>
+
+        <form id="episodeForm" class="panel">
+          <div class="field"><label>اختار المسلسل</label><select id="eSeries"></select></div>
+          <div class="row"><div class="field"><label>الموسم</label><input id="eSeason" type="number" value="1" /></div><div class="field"><label>رقم الحلقة</label><input id="eNumber" type="number" value="1" /></div></div>
+          <div class="field"><label>عنوان الحلقة</label><input id="eTitle" placeholder="الحلقة 1" /></div>
+          <div class="field"><label>رابط الحلقة أو iframe</label><textarea id="eUrl" required></textarea></div>
+          <div class="btns"><button class="btn save">حفظ حلقة</button><button type="button" class="btn clear" onclick="episodeForm.reset()">تفريغ</button></div>
+        </form>
+      </aside>
+
+      <section class="card">
+        <div class="toolbar">
+          <input id="search" placeholder="ابحث بين 100 مسلسل..." />
+          <select id="filter"><option value="all">كل التصنيفات</option><option>أكشن</option><option>دراما</option><option>رعب</option><option>تركي</option><option>عربي</option><option>كوري</option></select>
+        </div>
+        <div class="grid" id="seriesGrid"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const colors=[['#e50914','#111'],['#0b3d91','#020617'],['#6d28d9','#09090b'],['#f97316','#1f0800'],['#be123c','#111827'],['#047857','#020617']];
+    const cats=['أكشن','دراما','رعب','تركي','عربي','كوري'];
+    const STORAGE='kemoflix_admin_semifinal_v1';
+    let data=JSON.parse(localStorage.getItem(STORAGE)||'null')||{series:Array.from({length:100},(_,i)=>({id:'s'+(i+1),title:`مسلسل KemoFlix ${i+1}`,cat:cats[i%cats.length],seasons:(i%4)+1,desc:'مسلسل جاهز داخل لوحة التحكم للتعديل وإضافة الحلقات.',poster:'',color:colors[i%colors.length]})),movies:[],episodes:[]};
+    const save=()=>localStorage.setItem(STORAGE,JSON.stringify(data));
+    const grid=document.getElementById('seriesGrid'), search=document.getElementById('search'), filter=document.getElementById('filter'), eSeries=document.getElementById('eSeries');
+    function render(){
+      const q=search.value.trim().toLowerCase(), f=filter.value;
+      const list=data.series.filter(s=>(!q||s.title.toLowerCase().includes(q)||s.cat.includes(q))&&(f==='all'||s.cat===f));
+      document.getElementById('seriesCount').textContent=data.series.length;document.getElementById('moviesCount').textContent=data.movies.length;document.getElementById('episodesCount').textContent=data.episodes.length;
+      eSeries.innerHTML=data.series.map(s=>`<option value="${s.id}">${s.title}</option>`).join('');
+      grid.innerHTML=list.map(s=>{const c=s.color||colors[0];const eps=data.episodes.filter(e=>e.sid===s.id).length;return `<article class="series" style="--a:${c[0]};--b:${c[1]}"><div class="tools"><button class="mini" onclick="editSeries('${s.id}')">تعديل</button><button class="mini danger" onclick="delSeries('${s.id}')">حذف</button></div><div class="info"><span class="tag">${s.cat} • ${s.seasons} مواسم</span><h3>${s.title}</h3><p>${s.desc}</p><p>الحلقات: ${eps}</p></div></article>`}).join('');
+    }
+    document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active')});
+    seriesForm.onsubmit=e=>{e.preventDefault();data.series.unshift({id:'s'+Date.now(),title:sTitle.value,cat:sCat.value,seasons:sSeasons.value,desc:sDesc.value||'بدون وصف',poster:sPoster.value,color:colors[Math.floor(Math.random()*colors.length)]});save();seriesForm.reset();render()};
+    movieForm.onsubmit=e=>{e.preventDefault();data.movies.unshift({id:'m'+Date.now(),title:mTitle.value,cat:mCat.value,rate:mRate.value,poster:mPoster.value,url:mUrl.value});save();movieForm.reset();render()};
+    episodeForm.onsubmit=e=>{e.preventDefault();data.episodes.unshift({id:'e'+Date.now(),sid:eSeries.value,season:eSeason.value,num:eNumber.value,title:eTitle.value||`الحلقة ${eNumber.value}`,url:eUrl.value});save();episodeForm.reset();render()};
+    function delSeries(id){if(confirm('حذف المسلسل؟')){data.series=data.series.filter(s=>s.id!==id);data.episodes=data.episodes.filter(e=>e.sid!==id);save();render()}}
+    function editSeries(id){const s=data.series.find(x=>x.id===id);if(!s)return;const n=prompt('اسم المسلسل الجديد',s.title);if(n){s.title=n;save();render()}}
+    search.oninput=filter.onchange=render;render();
+  </script>
+</body>
+</html>
