@@ -3,116 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KemoFlix | أفلام ومسلسلات</title>
-  <meta name="description" content="KemoFlix منصة عصرية لمشاهدة الأفلام والمسلسلات بتصميم سينمائي احترافي." />
+  <title>KemoFlex</title>
+
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Tahoma,Arial,sans-serif;background:#06070b;color:#fff;overflow-x:hidden}
-    a{text-decoration:none;color:inherit}
-    .bg-glow{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 75% 10%,rgba(229,9,20,.45),transparent 30%),radial-gradient(circle at 10% 35%,rgba(116,0,255,.35),transparent 35%),linear-gradient(180deg,#090b13,#050507 55%,#000)}
-    .noise{position:fixed;inset:0;z-index:-1;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-    header{position:sticky;top:0;z-index:20;background:rgba(5,6,10,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
-    .nav{max-width:1240px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:28px;letter-spacing:.5px}.brand span{color:#e50914}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#e50914,#ff7a18);display:grid;place-items:center;box-shadow:0 0 28px rgba(229,9,20,.45);font-weight:900}
-    .links{display:flex;gap:18px;color:#d8d8df;font-size:14px}.links a:hover{color:#fff}.search{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:10px 14px;min-width:240px}.search input{background:transparent;border:0;outline:0;color:white;width:100%;font-size:14px}.search input::placeholder{color:#a6a6b1}
-    .hero{max-width:1240px;margin:auto;min-height:620px;padding:70px 22px 40px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:35px}.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(229,9,20,.15);border:1px solid rgba(229,9,20,.35);color:#ffccd0;padding:9px 14px;border-radius:999px;font-size:13px;margin-bottom:22px}.hero h1{font-size:clamp(42px,7vw,86px);line-height:1.05;font-weight:900;max-width:780px}.hero h1 span{background:linear-gradient(90deg,#fff,#ffb3b8,#e50914);-webkit-background-clip:text;color:transparent}.hero p{margin-top:22px;color:#c8c8d1;font-size:18px;line-height:1.9;max-width:650px}.actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}.btn{border:0;border-radius:16px;padding:15px 23px;font-weight:800;cursor:pointer;font-size:15px}.primary{background:#e50914;color:#fff;box-shadow:0 12px 35px rgba(229,9,20,.36)}.secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.14)}.stats{display:flex;gap:26px;margin-top:35px;color:#bfc0ca}.stats strong{display:block;color:#fff;font-size:24px}.poster-wall{position:relative;height:520px}.card-poster{position:absolute;width:210px;height:315px;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#222,#111);box-shadow:0 28px 80px rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.12)}.card-poster:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85))}.p1{right:30px;top:10px;background-image:linear-gradient(145deg,#5c0012,#0b0d16)}.p2{right:210px;top:100px;background-image:linear-gradient(145deg,#06184f,#04060a);transform:rotate(-7deg)}.p3{right:80px;top:250px;background-image:linear-gradient(145deg,#4b2700,#070707);transform:rotate(5deg)}.p4{right:325px;top:15px;background-image:linear-gradient(145deg,#1c005a,#0b0b12);transform:rotate(4deg)}.poster-title{position:absolute;bottom:22px;right:18px;left:18px}.poster-title small{color:#ffb3b8}.poster-title b{display:block;font-size:20px;margin-top:4px}
-    section{max-width:1240px;margin:auto;padding:26px 22px}.section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}.section-title h2{font-size:28px}.section-title p{color:#aaa;font-size:14px}.filters{display:flex;gap:10px;overflow:auto;padding-bottom:4px}.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:10px 16px;border-radius:999px;color:#e8e8ef;white-space:nowrap}.chip.active{background:#e50914;border-color:#e50914}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}.movie{position:relative;height:300px;border-radius:20px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.09);transition:.25s}.movie:hover{transform:translateY(-7px);box-shadow:0 20px 50px rgba(0,0,0,.45)}.movie:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.92))}.movie .cover{position:absolute;inset:0;background:linear-gradient(135deg,var(--a),var(--b));opacity:.95}.movie .info{position:absolute;z-index:2;bottom:16px;right:14px;left:14px}.rate{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);font-size:12px;padding:5px 8px;border-radius:999px;margin-bottom:8px}.movie h3{font-size:17px;margin-bottom:5px}.movie p{font-size:12px;color:#c8c8d1}.play{position:absolute;z-index:3;top:14px;left:14px;background:#e50914;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;opacity:0;transition:.25s}.movie:hover .play{opacity:1}
-    .feature{margin-top:30px;border-radius:32px;overflow:hidden;background:linear-gradient(135deg,rgba(229,9,20,.95),rgba(70,0,160,.92));display:grid;grid-template-columns:1fr 1fr;min-height:330px;border:1px solid rgba(255,255,255,.14)}.feature-content{padding:42px}.feature h2{font-size:40px}.feature p{margin-top:15px;color:#ffe6e8;line-height:1.9}.feature-art{position:relative;background:radial-gradient(circle,rgba(255,255,255,.26),transparent 55%)}.device{position:absolute;inset:55px 35px;border-radius:28px;background:#050507;border:10px solid rgba(255,255,255,.14);box-shadow:0 30px 80px rgba(0,0,0,.45);display:grid;place-items:center}.device:before{content:"KemoFlix";font-size:42px;font-weight:900;color:#e50914}
-    footer{max-width:1240px;margin:40px auto 0;padding:30px 22px 45px;color:#a8a8b3;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.admin-link{opacity:.28;font-size:12px}.admin-link:hover{opacity:1}
-    @media(max-width:900px){.links{display:none}.search{min-width:0;flex:1}.hero{grid-template-columns:1fr;min-height:auto;padding-top:45px}.poster-wall{height:420px}.grid{grid-template-columns:repeat(3,1fr)}.feature{grid-template-columns:1fr}.feature-art{min-height:250px}}
-    @media(max-width:560px){.brand{font-size:22px}.logo{width:36px;height:36px}.nav{padding:13px}.search{display:none}.hero{padding:38px 16px 20px}.hero p{font-size:15px}.stats{gap:14px}.poster-wall{height:360px;transform:scale(.86);transform-origin:right top}.grid{grid-template-columns:repeat(2,1fr);gap:12px}.movie{height:245px}section{padding:22px 14px}.feature-content{padding:28px}.feature h2{font-size:29px}footer{padding-inline:14px}}
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #050505;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 34px;
+      margin: 10px 0;
+    }
+
+    .search,
+    .admin-form input {
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+    }
+
+    .search {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a, #330000);
+      padding: 30px;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      color: white;
+      text-decoration: none;
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card h3 {
+      margin: 10px;
+      font-size: 17px;
+    }
+
+    .card span {
+      display: block;
+      margin: 0 10px 12px;
+      color: #aaa;
+    }
+
+    .admin-form {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      background: #e50914;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .delete {
+      width: calc(100% - 20px);
+      margin: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 10px; }
+
+      .header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .logo {
+        text-align: center;
+        font-size: 28px;
+      }
+
+      .hero { padding: 20px; }
+
+      .hero h2 { font-size: 22px; }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .card img { height: 210px; }
+
+      .card h3 { font-size: 14px; }
+    }
   </style>
 </head>
+
 <body>
-  <div class="bg-glow"></div><div class="noise"></div>
-  <header>
-    <nav class="nav">
-      <a href="#" class="brand"><div class="logo">K</div>Kemo<span>Flix</span></a>
-      <div class="links">
-        <a href="#movies">أفلام</a><a href="#series">مسلسلات</a><a href="#new">الأحدث</a><a href="#top">الأكثر مشاهدة</a>
-      </div>
-      <div class="search"><input id="searchInput" type="search" placeholder="ابحث عن فيلم أو مسلسل..." /></div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div>
-        <div class="badge">🔥 تجربة مشاهدة عصرية بجودة عالية</div>
-        <h1>كل عالم <span>الأفلام والمسلسلات</span> في مكان واحد</h1>
-        <p>واجهة سينمائية سريعة، أقسام منظمة، مشغل حديث، وتجربة تشبه المنصات العالمية مع لمسة KemoFlix الخاصة.</p>
-        <div class="actions">
-          <button class="btn primary" onclick="document.getElementById('movies').scrollIntoView({behavior:'smooth'})">ابدأ المشاهدة</button>
-          <button class="btn secondary">استكشف الجديد</button>
-        </div>
-        <div class="stats">
-          <div><strong>+120</strong> فيلم</div>
-          <div><strong>+45</strong> مسلسل</div>
-          <div><strong>HD</strong> جودة</div>
-        </div>
-      </div>
-      <div class="poster-wall">
-        <div class="card-poster p1"><div class="poster-title"><small>أكشن</small><b>Night Hunter</b></div></div>
-        <div class="card-poster p2"><div class="poster-title"><small>خيال علمي</small><b>Galaxy War</b></div></div>
-        <div class="card-poster p3"><div class="poster-title"><small>دراما</small><b>Lost City</b></div></div>
-        <div class="card-poster p4"><div class="poster-title"><small>رعب</small><b>Dark Room</b></div></div>
-      </div>
-    </section>
-
-    <section id="movies">
-      <div class="section-title">
-        <div><h2>الأكثر مشاهدة الآن</h2><p>مختارات واجهة KemoFlix</p></div>
-      </div>
-      <div class="filters">
-        <button class="chip active" data-filter="all">الكل</button><button class="chip" data-filter="action">أكشن</button><button class="chip" data-filter="drama">دراما</button><button class="chip" data-filter="horror">رعب</button><button class="chip" data-filter="series">مسلسلات</button>
-      </div>
-      <br />
-      <div class="grid" id="movieGrid"></div>
-    </section>
-
-    <section class="feature">
-      <div class="feature-content">
-        <div class="badge">⭐ تصميم قابل للتطوير</div>
-        <h2>لوحة تحكم + قاعدة بيانات + مشغل فيديو</h2>
-        <p>هذه النسخة واجهة أمامية احترافية. يمكن ربطها لاحقًا بـ Firebase لإضافة الأفلام والمسلسلات من لوحة تحكم مثل مشروعك الرياضي.</p>
-        <div class="actions"><button class="btn secondary">مشاهدة التفاصيل</button></div>
-      </div>
-      <div class="feature-art"><div class="device"></div></div>
-    </section>
-
-    <section id="series">
-      <div class="section-title"><div><h2>مسلسلات مقترحة</h2><p>تصنيف سريع ومظهر فاخر</p></div></div>
-      <div class="grid" id="seriesGrid"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div>© 2026 KemoFlix — منصة أفلام ومسلسلات بتصميم عصري.</div>
-    <a class="admin-link" href="kemoflix-admin.html">لوحة التحكم</a>
-  </footer>
+  <div class="container" id="app"></div>
 
   <script>
-    const movies = [
-      {title:'The Last Signal',type:'action',meta:'أكشن • 2026',rate:'9.1',a:'#e50914',b:'#111'},
-      {title:'Silent River',type:'drama',meta:'دراما • 2025',rate:'8.7',a:'#2236ff',b:'#050718'},
-      {title:'Dark House',type:'horror',meta:'رعب • 2026',rate:'8.3',a:'#541388',b:'#050505'},
-      {title:'Speed Line',type:'action',meta:'أكشن • HD',rate:'9.0',a:'#ff7a18',b:'#190602'},
-      {title:'Blue Moon',type:'drama',meta:'رومانسي • 2025',rate:'8.1',a:'#00b4d8',b:'#030b12'},
-      {title:'Shadow Gate',type:'horror',meta:'غموض • 2026',rate:'8.9',a:'#2b2d42',b:'#000'},
-      {title:'Empire X',type:'series',meta:'مسلسل • موسم 1',rate:'9.4',a:'#7209b7',b:'#050505'},
-      {title:'City Lights',type:'series',meta:'مسلسل • دراما',rate:'8.6',a:'#f72585',b:'#111'},
-      {title:'War Zone',type:'action',meta:'حرب • 2026',rate:'8.8',a:'#6a040f',b:'#030303'},
-      {title:'Golden Life',type:'drama',meta:'دراما • HD',rate:'8.2',a:'#f4a261',b:'#1d1205'},
-      {title:'Night Code',type:'series',meta:'مسلسل • تشويق',rate:'9.2',a:'#003566',b:'#000814'},
-      {title:'Haunted',type:'horror',meta:'رعب • HD',rate:'7.9',a:'#111',b:'#3a0ca3'}
+    const defaultMovies = [
+      {
+        title: "فيلم تجريبي",
+        category: "أكشن",
+        image: "https://via.placeholder.com/400x600",
+        link: "#"
+      }
     ];
-    const movieGrid = document.getElementById('movieGrid');
-    const seriesGrid = document.getElementById('seriesGrid');
-    function card(item){return `<article class="movie" data-type="${item.type}" data-title="${item.title.toLowerCase()}" style="--a:${item.a};--b:${item.b}"><div class="cover"></div><div class="play">▶</div><div class="info"><span class="rate">⭐ ${item.rate}</span><h3>${item.title}</h3><p>${item.meta}</p></div></article>`}
-    movieGrid.innerHTML = movies.map(card).join('');
-    seriesGrid.innerHTML = movies.filter(x=>x.type==='series').map(card).join('');
-    document.querySelectorAll('.chip').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('#movieGrid .movie').forEach(m=>m.style.display=(f==='all'||m.dataset.type===f)?'block':'none')}));
-    document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('#movieGrid .movie').forEach(m=>m.style.display=m.dataset.title.includes(q)?'block':'none')});
+
+    let movies = JSON.parse(localStorage.getItem("movies")) || defaultMovies;
+    const app = document.getElementById("app");
+    const isAdmin = window.location.pathname.includes("admin");
+
+    function saveMovies() {
+      localStorage.setItem("movies", JSON.stringify(movies));
+    }
+
+    function renderHome() {
+      app.innerHTML = `
+        <header class="header">
+          <h1 class="logo">KemoFlex</h1>
+          <input class="search" id="search" placeholder="ابحث عن فيلم..." />
+        </header>
+
+        <div class="hero">
+          <h2>شاهد أفضل الأفلام والمسلسلات</h2>
+          <p>واجهة بسيطة وسريعة ومناسبة للموبايل</p>
+        </div>
+
+        <div class="grid" id="moviesGrid"></div>
+      `;
+
+      renderMovies(movies);
+
+      document.getElementById("search").addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+        const filtered = movies.filter(movie =>
+          movie.title.toLowerCase().includes(value)
+        );
+        renderMovies(filtered);
+      });
+    }
+
+    function renderMovies(list) {
+      const grid = document.getElementById("moviesGrid");
+
+      grid.innerHTML = list.map(movie => `
+        <a class="card" href="${movie.link}" target="_blank">
+          <img src="${movie.image}" alt="${movie.title}">
+          <h3>${movie.title}</h3>
+          <span>${movie.category || ""}</span>
+        </a>
+      `).join("");
+    }
+
+    function renderAdmin() {
+      app.innerHTML = `
+        <h1 class="logo">KemoFlex Admin</h1>
+
+        <form class="admin-form" id="movieForm">
+          <input id="title" placeholder="اسم الفيلم" required />
+          <input id="category" placeholder="التصنيف" />
+          <input id="image" placeholder="رابط الصورة" required />
+          <input id="link" placeholder="رابط المشاهدة" />
+          <button type="submit">إضافة</button>
+        </form>
+
+        <div class="grid" id="adminGrid"></div>
+      `;
+
+      document.getElementById("movieForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        movies.push({
+          title: document.getElementById("title").value,
+          category: document.getElementById("category").value,
+          image: document.getElementById("image").value,
+          link: document.getElementById("link").value || "#"
+        });
+
+        saveMovies();
+        renderAdmin();
+      });
+
+      renderAdminMovies();
+    }
+
+    function renderAdminMovies() {
+      const grid = document.getElementById("adminGrid");
+
+      grid.innerHTML = movies.map((movie, index) => `
+        <div class="card">
+          <img src="${movie.image}" alt="${movie.title}">
+          <h3>${movie.title}</h3>
+          <span>${movie.category || ""}</span>
+          <button class="delete" onclick="deleteMovie(${index})">حذف</button>
+        </div>
+      `).join("");
+    }
+
+    function deleteMovie(index) {
+      movies.splice(index, 1);
+      saveMovies();
+      renderAdmin();
+    }
+
+    if (isAdmin) {
+      renderAdmin();
+    } else {
+      renderHome();
+    }
   </script>
 </body>
 </html>
